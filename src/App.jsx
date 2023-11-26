@@ -12,7 +12,7 @@ export default function App() {
   const [id, setId] = useState(null);
   const [isSearch, setIsSearch] = useState(false);
   const [type, setType] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const generateRandomId = () => {
     setId(Math.floor(Math.random() * numberOfPokemon));
   };

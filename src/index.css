@@ -86,3 +86,22 @@ ul li {
   font-size: 1.5rem;
   color: #333;
 }
+
+.pokemon-card {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 150px;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  & img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
