@@ -88,10 +88,7 @@ const Evolution = ({ handleBackButton, data }) => {
       const imageUrl = pokemonImages[currentStage.species.name];
       if (imageUrl) {
         content.push(
-          <div key={currentStage.species.name}>
-            <img src={imageUrl} alt={currentStage.species.name} />
-            <p>{currentStage.species.name}</p>
-          </div>
+          <PokemonCard img={imageUrl} name={currentStage.species.name} />
         );
       }
 
