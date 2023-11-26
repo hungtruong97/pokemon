@@ -4,6 +4,7 @@ import Content from "./Content";
 import Evolution from "./Evolution";
 import Loading from "./Loading";
 import { useState } from "react";
+import Pokemon from "./Pokemon";
 
 const Container = ({ data, searchType, hidden, isLoading }) => {
   const [isShowData, setIsShowData] = useState(true);
@@ -25,7 +26,7 @@ const Container = ({ data, searchType, hidden, isLoading }) => {
         isShowData &&
         (data ? (
           <div>
-            <Content data={data} searchType={searchType} hidden={hidden} />
+            <Pokemon pokemon={data} />
             <button onClick={handleShowEvolution}>Show its evolution</button>
           </div>
         ) : (
