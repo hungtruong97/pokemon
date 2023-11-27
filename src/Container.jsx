@@ -1,18 +1,28 @@
 /* eslint-disable */
 
-import Content from "./Content";
 import Evolution from "./Evolution";
 import Loading from "./Loading";
-import { useState } from "react";
 import Pokemon from "./Pokemon";
+import Item from "./Item";
+import { useEffect, useState } from "react";
 
-const Container = ({ data, searchType, hidden, isLoading }) => {
-  const [isShowData, setIsShowData] = useState(true);
-  const [isShowEvolution, setIsShowEvolution] = useState(false);
+const Container = ({ data, searchType, hidden, isLoading, fetchData }) => {
+  const [displayState, setDisplayState] = useState("pokemon"); //pokemon, item, evolution, none
 
-  const handleShowEvolution = () => {
-    setIsShowEvolution(!isShowEvolution);
-    setIsShowData(!isShowData);
+  useEffect(() => {
+    setDisplayState("pokemon");
+  }, [data]);
+
+  const showEvolution = () => {
+    setDisplayState("evolution");
+  };
+
+  const showPokemon = () => {
+    setDisplayState("pokemon");
+  };
+
+  const showItem = () => {
+    setDisplayState("item");
   };
 
   if (isLoading) {
@@ -21,35 +31,32 @@ const Container = ({ data, searchType, hidden, isLoading }) => {
 
   return (
     <div className="container">
-      {searchType === "pokemon" &&
-        !hidden &&
-        isShowData &&
-        (data ? (
-          <div>
-            <Pokemon pokemon={data} />
-            <button onClick={handleShowEvolution}>Show its evolution</button>
-          </div>
-        ) : (
-          <div className="error">
-            <h2> Sorry, we can't find that pokemon.</h2>
-          </div>
-        ))}
+      {!hidden && searchType === "pokemon" && data && (
+        <div>
+          {displayState === "pokemon" && (
+            <Pokemon
+              pokemon={data}
+              showEvolution={showEvolution}
+              showPokemon={showPokemon}
+            />
+          )}
+          {displayState === "evolution" && (
+            <Evolution
+              data={data}
+              showEvolution={showEvolution}
+              showPokemon={showPokemon}
+              fetchData={fetchData}
+            />
+          )}
+        </div>
+      )}
 
-      {searchType === "item" &&
-        !hidden &&
-        isShowData &&
-        (data ? (
-          <div>
-            <Content data={data} searchType={searchType} hidden={hidden} />
-          </div>
-        ) : (
-          <div className="error">
-            <h2> Sorry, we can't find that item.</h2>
-          </div>
-        ))}
+      {searchType === "item" && data && <Item item={data} />}
 
-      {isShowEvolution && (
-        <Evolution handleBackButton={handleShowEvolution} data={data} />
+      {!hidden && !data && (
+        <div className="error">
+          <h2> Sorry, we can't find that {searchType}.</h2>
+        </div>
       )}
     </div>
   );

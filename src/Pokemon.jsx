@@ -1,10 +1,13 @@
 /* eslint-disable */
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = ({ pokemon, showEvolution, showPokemon }) => {
   return (
     <div className="pokemon">
-      <h2> Your pokemon is {pokemon.name}</h2>
-      <img src={pokemon.sprites.other["official-artwork"].front_default} />
+      <h2>Your pokemon is {pokemon.name}</h2>
+      <img
+        src={pokemon.sprites.other["official-artwork"].front_default}
+        alt={pokemon.name}
+      />
       <div className="info">
         <p>ID: {pokemon.id}</p>
         <p>Height: {pokemon.height * 10} cm</p>
@@ -19,8 +22,9 @@ const Pokemon = ({ pokemon }) => {
               {index !== pokemon.abilities.length - 1 ? "," : ""}{" "}
             </span>
           ))}
-        </p>
+        </p>{" "}
       </div>
+      <button onClick={showEvolution}>Show its evolution</button>
     </div>
   );
 };
