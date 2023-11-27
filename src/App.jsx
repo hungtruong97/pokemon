@@ -36,6 +36,7 @@ export default function App() {
         setData(response.data);
         setIsHidden(false);
         setType(searchType);
+        setId(response.data.id);
       }
     } catch (error) {
       setData(null);
@@ -84,6 +85,7 @@ export default function App() {
         searchType={type}
         hidden={isHidden}
         isLoading={isLoading}
+        fetchData={fetchData}
       />
     </div>
   );

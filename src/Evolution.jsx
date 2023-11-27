@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import PokemonCard from "./PokemonCard";
 
-const Evolution = ({ handleBackButton, data }) => {
+const Evolution = ({ showPokemon, showEvolution, data, fetchData }) => {
   const [evolutionChain, setEvolutionChain] = useState(null);
   const [pokemonImages, setPokemonImages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -88,7 +88,13 @@ const Evolution = ({ handleBackButton, data }) => {
       const imageUrl = pokemonImages[currentStage.species.name];
       if (imageUrl) {
         content.push(
-          <PokemonCard img={imageUrl} name={currentStage.species.name} />
+          <PokemonCard
+            img={imageUrl}
+            name={currentStage.species.name}
+            showPokemon={showPokemon}
+            showEvolution={showEvolution}
+            fetchData={fetchData}
+          />
         );
       }
 
@@ -102,8 +108,10 @@ const Evolution = ({ handleBackButton, data }) => {
   return (
     <div className="evolution">
       {isLoading && <Loading />}
-      <div className="row">{displayEvolutionChain()}</div>
-      <button onClick={handleBackButton}>Back</button>
+      <div>
+        <div className="row">{displayEvolutionChain()}</div>
+        <button onClick={showPokemon}>Back</button>
+      </div>
     </div>
   );
 };
