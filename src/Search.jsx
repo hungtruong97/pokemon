@@ -1,10 +1,14 @@
 /* eslint-disable */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Search = ({ handleClick, handleSearch }) => {
+const Search = ({ handleClick, handleSearch, switchSearchType }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("");
+
+  useEffect(() => {
+    switchSearchType(searchType);
+  }, [searchType]);
 
   const onSearchClick = () => {
     handleSearch({ searchTerm, searchType });

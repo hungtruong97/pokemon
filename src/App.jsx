@@ -35,19 +35,17 @@ export default function App() {
       if (response.data) {
         setData(response.data);
         setIsHidden(false);
-        setType(searchType);
         setId(response.data.id);
       }
     } catch (error) {
       setData(null);
-      setType(searchType);
       setIsHidden(false);
     }
   };
 
   const clearContent = () => {
     setData(null);
-    setIsHidden(!isHidden);
+    setIsHidden(true);
   };
 
   const openSearch = () => {
@@ -60,6 +58,12 @@ export default function App() {
     setIsLoading(true);
     await fetchData(searchTerm, searchType);
     setIsLoading(false);
+  };
+
+  const switchSearchType = (t) => {
+    setType(t);
+    setIsHidden(true);
+    setData(null);
   };
 
   return (
@@ -78,7 +82,11 @@ export default function App() {
         <Button label="Search for Pokemon" handleClick={openSearch} />
       </header>
       {isSearch && (
-        <Search handleClick={openSearch} handleSearch={handleSearch} />
+        <Search
+          handleClick={openSearch}
+          handleSearch={handleSearch}
+          switchSearchType={switchSearchType}
+        />
       )}
       <Container
         data={data}

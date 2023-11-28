@@ -10,8 +10,8 @@ const Container = ({ data, searchType, hidden, isLoading, fetchData }) => {
   const [displayState, setDisplayState] = useState("pokemon"); //pokemon, item, evolution, none
 
   useEffect(() => {
-    setDisplayState("pokemon");
-  }, [data]);
+    setDisplayState(searchType);
+  }, [searchType]);
 
   const showEvolution = () => {
     setDisplayState("evolution");
@@ -51,7 +51,7 @@ const Container = ({ data, searchType, hidden, isLoading, fetchData }) => {
         </div>
       )}
 
-      {searchType === "item" && data && <Item item={data} />}
+      {displayState == "item" && data && <Item item={data} />}
 
       {!hidden && !data && (
         <div className="error">
