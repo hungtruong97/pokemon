@@ -4,6 +4,7 @@ import Evolution from "./Evolution";
 import Loading from "./Loading";
 import Pokemon from "./Pokemon";
 import Item from "./Item";
+import Suggestion from "./Suggestion";
 import { useEffect, useState } from "react";
 
 const Container = ({ data, searchType, hidden, isLoading, fetchData }) => {
@@ -34,11 +35,17 @@ const Container = ({ data, searchType, hidden, isLoading, fetchData }) => {
       {!hidden && searchType === "pokemon" && data && (
         <div>
           {displayState === "pokemon" && (
-            <Pokemon
-              pokemon={data}
-              showEvolution={showEvolution}
-              showPokemon={showPokemon}
-            />
+            <div>
+              <Pokemon
+                pokemon={data}
+                showEvolution={showEvolution}
+                showPokemon={showPokemon}
+              />
+              <Suggestion
+                pokemonType={data.types[0].type.name}
+                fetchData={fetchData}
+              />
+            </div>
           )}
           {displayState === "evolution" && (
             <Evolution

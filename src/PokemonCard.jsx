@@ -1,13 +1,12 @@
 /* eslint-disable */
 
-const PokemonCard = ({ img, name, showPokemon, fetchData }) => {
+const PokemonCard = ({ img, name, fetchData }) => {
   return (
     <div>
       <div
         className="pokemon-card"
         onClick={() => {
           fetchData(name);
-          showPokemon();
         }}
       >
         <img src={img} />

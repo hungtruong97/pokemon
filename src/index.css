@@ -37,6 +37,8 @@ header {
 
 .container {
   width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
   min-height: 800px;
   display: grid;
   justify-content: center;
@@ -103,5 +105,18 @@ ul li {
   & img {
     width: 100%;
     object-fit: contain;
+  }
+}
+
+.pokemon {
+  margin-bottom: 100px;
+}
+
+& .suggestion {
+  & .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
   }
 }
